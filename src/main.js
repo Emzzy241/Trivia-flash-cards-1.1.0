@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+import TriviaDatabase from './trivia.js'
 
 
 
@@ -37,55 +38,12 @@ $(document).ready(function () {
             $(".restart-game").fadeIn("slow");
             // when the start game function is clicked, begin with the API call and do all of this
 
-
-            // making the api request with XMLHttpRequest();
-            let triviaRequest = new XMLHttpRequest();
-
-
-
-
-
-            // the api call url to the Trivia Database Api
-
-            // No API key needed, just go to opentdb.com and geenrate 
-            console.log(userDifficulty);
-
-            const triviaApiUrl = `https://opentdb.com/api.php?amount=15&category=12&difficulty=${userDifficulty}&type=multiple`
-
             
-            console.log(triviaApiUrl);
-            // working with some of the properties given to me by reinstantiating an XMLHttpRequest()
+            let triviaPromise = TriviaDatabase.getTriviaQuestions(userDifficulty)
+            
 
-            triviaRequest.onreadystatechange = function () {
+            // getTrivias function is now wrapped inside a .then() method
 
-                console.log(this.readyState);
-                // showing my self each stage the API would be passing through
-
-
-                // making javascript determine when the response will be ready
-
-                if (triviaRequest.status === 200 && triviaRequest.readyState === 4) {
-
-                    // getting the response now after determining if its ready
-
-                    const triviaResponse = JSON.parse(this.responseText);
-                    // parsing the JSON response to turn it into strings and store in a constant variable
-
-                    getTrivias(triviaResponse);
-                    // having a call back that takes my parsed JSON as a parameter 
-
-                }
-            }
-
-            // time to open and send the request 
-
-            triviaRequest.open("GET", triviaApiUrl, true);
-            triviaRequest.send();
-
-            // now its time to use my getTrivias function to get 16 trivia questions and have them presented to the user, by each stage
-
-
-            // getTrivias function
 
             function getTrivias(myTriviaResponse) {
 
@@ -316,3 +274,9 @@ $(document).ready(function () {
 
 
 });
+
+// now after my API Call is successful, I still need to tell JavScript what to do
+// and that is why I would be making use of a promise.then() method that will allow me to handle
+// when a promise is successful(compulsory) or when a promise is unsuccessful(optional) --the reason for the latter
+// being optional is because some developers might not want to do anything again when a promise is unsuccessful; and that is not me...
+// my API .then() would return something for users when my call was unsuccessful
