@@ -1,13 +1,14 @@
 // the business logic of my trivia application
+// this triviaDatabase class just creates an API call wrapped in a promise, it doesn't alter the DOM at all
 
 export class TriviaDatabase {
-    static getTriviaQuestions(difficultySelected) {
+    static getTriviaQuestions(userDifficulty) {
         // no need for variables, the return is used to return our promise here(this is just a method that returns a Promise object)
         // and the return also takes in a callback function that I wrote with an arrow notation
         return new Promise((promiseResolved, promiseRejected) => {
 
             let triviaRequest = new XMLHttpRequest();
-            const triviaApiUrl = `https://opentdb.com/api.php?amount=15&category=12&difficulty=${difficultySelected}&type=multiple`
+            const triviaApiUrl = `https://opentdb.com/api.php?amount=15&category=12&difficulty=${userDifficulty}&type=multiple`
             triviaRequest.onload = function () {
                 if (this.status === 200) {
                     promiseResolved(triviaRequest.response);
