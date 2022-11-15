@@ -31,7 +31,7 @@ _THis is an update to the already existing Trivia app. THe version 1.1.0 comes w
 Since this is the version we've all been waiting for; you get to see many new updates like the separion of concerns, static functions e.t.c all being added to the already existing version 1.0.0. WATCH OUT FOR VERSION 1.2.0 WHICH IS COMING SOON. Also in version 1.2.0, I would be making use of some things called promise.fetch, an Async and awake function and even a try....catch block just to make application more fun and readable for users_
 
 ## WebLink
-https://emzzy241.github.io/Trivia-Flash-Cards/
+https://emzzy241.github.io/Trivia-flash-cards-1.1.0/
 
 ## License
 Licensed under the GNU General Public License
